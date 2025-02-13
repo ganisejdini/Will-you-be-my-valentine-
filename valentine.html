@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: pink;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 50px;
+            color: red;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: darkred;
+        }
+        #no {
+            background-color: grey;
+        }
+        .hidden {
+            display: none;
+        }
+        .hearts {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: float 3s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
+        }
+        .teddy {
+            width: 150px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? ❤️</h1>
+    <button class="button" id="yes">Yes</button>
+    <button class="button" id="no">No</button>
+    
+    <div id="hearts-container"></div>
+    <img id="teddy" class="hidden" src="https://i.imgur.com/1k5B5sL.png" alt="Teddy Bear">
+
+    <script>
+        document.getElementById('yes').addEventListener('click', function() {
+            document.getElementById('teddy').classList.remove('hidden');
+
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('hearts');
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = '100vh';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(heart);
+
+                setTimeout(() => heart.remove(), 3000);
+            }
+        });
+
+        document.getElementById('no').addEventListener('click', function() {
+            alert("Awww 😢 Maybe next time?");
+        });
+    </script>
+</body>
+</html>
